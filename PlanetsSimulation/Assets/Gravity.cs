@@ -7,12 +7,14 @@ public class Gravity : MonoBehaviour
     //Settings
 
     public Vector3 velocity;
+    private Vector3 projection;
     public float mass = 1f;
     public float rotation = 120.0f;
 
     public float gravConstantAndSunMass = 1f;
 
     public Transform sun;
+    public Transform plane;
 
     // Properties
 
@@ -42,6 +44,14 @@ public class Gravity : MonoBehaviour
 
     void OnDrawGizmos()
     {
+        if (sun != null)
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawLine(transform.position, sun.position);
+            projection.Set(transform.position.x, plane.position.y,transform.position.z);
+            Gizmos.DrawLine(transform.position, projection);
+            Gizmos.DrawSphere(projection, 0.1f);
 
+        }
     }
 }
