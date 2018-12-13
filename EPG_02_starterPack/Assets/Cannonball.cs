@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Cannonball : MonoBehaviour {
 
-    public float CannonballSpeed = 5f;
+    public float CannonballSpeed = 1f;
   
 
 	// Use this for initialization

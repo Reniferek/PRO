@@ -1,0 +1,1 @@
+Those meshes don't have UVs for Lightmapping.

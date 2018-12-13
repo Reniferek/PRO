@@ -9,6 +9,7 @@ public class Player : MonoBehaviour {
     private bool isGrounded = true;
     private Rigidbody2D rb;
     private float x_displacement;
+    private float y_displacement;
 
     private void Start() {
         rb = GetComponent<Rigidbody2D>();
@@ -17,12 +18,8 @@ public class Player : MonoBehaviour {
 
     void Update() {
         x_displacement = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
-        transform.position += new Vector3(x_displacement, 0, 0);
-
-        if (Input.GetKey("space") && isGrounded) {
-            isGrounded = false;
-            rb.AddForce(new Vector2(0, jump));
-        }
+        y_displacement = Input.GetAxis("Vertical") * Time.deltaTime * speed;
+        transform.position += new Vector3(x_displacement, y_displacement, 0);
     }
 
     void OnCollisionEnter2D(Collision2D collision) {

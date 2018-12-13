@@ -12,23 +12,28 @@ public class Shoot : MonoBehaviour {
 
     public Cannonball prefab;
     public Transform cannonTransform;
+    public Transform player;
 
 	// Use this for initialization
 	void Start () {
         lastBallTime = 0;
-	}
+        GameObject.Find("Cannonball").transform.position = new Vector3(100, 100, 0);
+        //player = GameObject.Find("Player");
+    }
 	
 	// Update is called once per frame
 	void Update () {
         lastBallTime += Time.deltaTime;
-
-        if (lastBallTime > period)
+        Vector3 targetDir = player.position - transform.position;
+        Vector3 right = -transform.right;
+        float angle = Vector3.Angle(targetDir, right);
+        if (Vector3.Distance(player.transform.position, transform.position) < 5 && lastBallTime > period && angle < 15f)
         {
+            transform.right = -(player.position - transform.position);
             Instantiate(prefab, cannonTransform.transform.position, cannonTransform.rotation);
             lastBallTime = 0;
         }
-
-        if (lastBallTime > period / 2)
+        else
         {
             float rotationValue = rotationSpeed * Time.deltaTime * direction;
             Vector3 rotateVector = new Vector3(0, 0, rotationValue);
@@ -39,5 +44,5 @@ public class Shoot : MonoBehaviour {
                 direction *= -1;
             }
         }
-	}
+    }
 }
