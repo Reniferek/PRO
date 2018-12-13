@@ -5,8 +5,6 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 
     public float speed = 2f;
-    public float jump = 400f;
-    private bool isGrounded = true;
     private Rigidbody2D rb;
     private float x_displacement;
     private float y_displacement;
@@ -27,7 +25,6 @@ public class Player : MonoBehaviour {
         {
             Destroy(gameObject);
         }
-        isGrounded = true;
     }
 
 }
